@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
+import 'package:tcapp/env/env.dart';
+
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
 /// Example:
@@ -52,13 +54,13 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDVes-dFS_0vtcC8RvrpQXdKzbIDYSsS80',
-    appId: '1:543196950301:web:70a55cbea3011f60f2bbf4',
-    messagingSenderId: '543196950301',
-    projectId: 'techcampus-5c803',
-    authDomain: 'techcampus-5c803.firebaseapp.com',
-    storageBucket: 'techcampus-5c803.appspot.com',
-    measurementId: 'G-F2FDTV80W9',
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: Env.firebaseApiKey,
+    appId: Env.firebaseAppId,
+    messagingSenderId: Env.firebaseMessagingSenderId,
+    projectId: Env.firebaseProjectId,
+    authDomain: Env.firebaseAuthDomain,
+    storageBucket: Env.firebaseStorageBucket,
+    measurementId: Env.firebaseMeasurementId,
   );
 }

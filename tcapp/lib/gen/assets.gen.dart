@@ -19,9 +19,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/prf_0.jpg
   AssetGenImage get prf0 => const AssetGenImage('assets/images/prf_0.jpg');
 
-  /// File path: assets/images/prf_1.jpg
-  AssetGenImage get prf1 => const AssetGenImage('assets/images/prf_1.jpg');
-
   /// File path: assets/images/prf_2.jpg
   AssetGenImage get prf2 => const AssetGenImage('assets/images/prf_2.jpg');
 
@@ -29,7 +26,7 @@ class $AssetsImagesGen {
   AssetGenImage get prf3 => const AssetGenImage('assets/images/prf_3.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icSlackLogo, prf0, prf1, prf2, prf3];
+  List<AssetGenImage> get values => [icSlackLogo, prf0, prf2, prf3];
 }
 
 class Assets {
