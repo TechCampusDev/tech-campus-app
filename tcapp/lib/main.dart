@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tcapp/configure_app.dart'
+    if (dart.library.html) 'package:tcapp/configure_web.dart';
 import 'package:tcapp/router/router.dart';
 
 void main() async {
@@ -13,6 +15,7 @@ void main() async {
     ..radius = 10.0
     ..userInteractions = false
     ..dismissOnTap = false;
+  configureTomopiiaApp();
   runApp(const ProviderScope(child: MyApp()));
 }
 
