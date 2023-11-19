@@ -1,13 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tcapp/configure_app.dart'
     if (dart.library.html) 'package:tcapp/configure_web.dart';
+import 'package:tcapp/firebase_options.dart';
 import 'package:tcapp/router/router.dart';
 
 void main() async {
   GoRouter.optionURLReflectsImperativeAPIs = true;
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   EasyLoading.instance
     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
     ..loadingStyle = EasyLoadingStyle.dark

@@ -8,6 +8,8 @@ export const onCallSlackOauth = functions
     const request = data as OnCallSlackOauthRequest
     const { code } = request
 
+    console.log(code)
+
     const response = await axios.post(
       'https://slack.com/api/openid.connect.token',
       {
@@ -18,12 +20,12 @@ export const onCallSlackOauth = functions
       },
       {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       }
     )
 
     console.log(response.data)
 
-    return data
+    return response.data
   })
