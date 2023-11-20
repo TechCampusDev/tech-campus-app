@@ -1,6 +1,7 @@
-# pull したら
+# pullしたら
 
 ```
+fvm use 3.13.2
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 

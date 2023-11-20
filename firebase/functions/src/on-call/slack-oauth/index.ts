@@ -1,6 +1,8 @@
 import { OnCallSlackOauthRequest } from '@/types/on-call-slack-oauth-request'
 import * as functions from 'firebase-functions'
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
+import { getAuth } from 'firebase-admin/auth'
 
 export const onCallSlackOauth = functions
   .region('asia-northeast1')
@@ -27,5 +29,21 @@ export const onCallSlackOauth = functions
 
     console.log(response.data)
 
-    return response.data
+    const { id_token: idToken } = response.data
+    const decoded = jwtDecode(idToken)
+
+    console.log(decoded)
+
+    const { sub: userId } = decoded
+
+    if (!userId) {
+      throw new functions.https.HttpsError(
+        'internal',
+        'SlackのユーザーIDが取得できませんでした'
+      )
+    }
+
+    const customToken = await getAuth().createCustomToken(userId)
+
+    return { customToken }
   })
