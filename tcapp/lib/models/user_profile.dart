@@ -7,6 +7,7 @@ part 'user_profile.g.dart';
 class UserProfile with _$UserProfile {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory UserProfile({
+    @Default('') String id,
     @Default(false) bool isPublic,
     @Default('') String name,
     @Default([]) List<String> career,

@@ -2,16 +2,21 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tcapp/env/env.dart';
 import 'package:tcapp/gen/assets.gen.dart';
+import 'package:tcapp/providers/auth_provider.dart';
 import 'package:tcapp/utils/constants.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class SlackLoginButton extends StatelessWidget {
+class SlackLoginButton extends ConsumerWidget {
   const SlackLoginButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isSignedIn =
+        ref.watch(authProvider.select((value) => value.isSignedIn));
+    if (isSignedIn) return const SizedBox.shrink();
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [

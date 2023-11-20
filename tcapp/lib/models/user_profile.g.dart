@@ -8,6 +8,7 @@ part of 'user_profile.dart';
 
 _$UserProfileImpl _$$UserProfileImplFromJson(Map<String, dynamic> json) =>
     _$UserProfileImpl(
+      id: json['id'] as String? ?? '',
       isPublic: json['is_public'] as bool? ?? false,
       name: json['name'] as String? ?? '',
       career: (json['career'] as List<dynamic>?)
@@ -31,6 +32,7 @@ _$UserProfileImpl _$$UserProfileImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$UserProfileImplToJson(_$UserProfileImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'is_public': instance.isPublic,
       'name': instance.name,
       'career': instance.career,

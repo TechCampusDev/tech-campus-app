@@ -20,6 +20,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserProfile {
+  String get id => throw _privateConstructorUsedError;
   bool get isPublic => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String> get career => throw _privateConstructorUsedError;
@@ -42,7 +43,8 @@ abstract class $UserProfileCopyWith<$Res> {
       _$UserProfileCopyWithImpl<$Res, UserProfile>;
   @useResult
   $Res call(
-      {bool isPublic,
+      {String id,
+      bool isPublic,
       String name,
       List<String> career,
       List<String> urls,
@@ -65,6 +67,7 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? isPublic = null,
     Object? name = null,
     Object? career = null,
@@ -75,6 +78,10 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
     Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       isPublic: null == isPublic
           ? _value.isPublic
           : isPublic // ignore: cast_nullable_to_non_nullable
@@ -120,7 +127,8 @@ abstract class _$$UserProfileImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isPublic,
+      {String id,
+      bool isPublic,
       String name,
       List<String> career,
       List<String> urls,
@@ -141,6 +149,7 @@ class __$$UserProfileImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? isPublic = null,
     Object? name = null,
     Object? career = null,
@@ -151,6 +160,10 @@ class __$$UserProfileImplCopyWithImpl<$Res>
     Object? imageUrl = null,
   }) {
     return _then(_$UserProfileImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       isPublic: null == isPublic
           ? _value.isPublic
           : isPublic // ignore: cast_nullable_to_non_nullable
@@ -192,7 +205,8 @@ class __$$UserProfileImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$UserProfileImpl implements _UserProfile {
   const _$UserProfileImpl(
-      {this.isPublic = false,
+      {this.id = '',
+      this.isPublic = false,
       this.name = '',
       final List<String> career = const [],
       final List<String> urls = const [],
@@ -208,6 +222,9 @@ class _$UserProfileImpl implements _UserProfile {
   factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final String id;
   @override
   @JsonKey()
   final bool isPublic;
@@ -259,7 +276,7 @@ class _$UserProfileImpl implements _UserProfile {
 
   @override
   String toString() {
-    return 'UserProfile(isPublic: $isPublic, name: $name, career: $career, urls: $urls, profile: $profile, specialties: $specialties, compatibilities: $compatibilities, imageUrl: $imageUrl)';
+    return 'UserProfile(id: $id, isPublic: $isPublic, name: $name, career: $career, urls: $urls, profile: $profile, specialties: $specialties, compatibilities: $compatibilities, imageUrl: $imageUrl)';
   }
 
   @override
@@ -267,6 +284,7 @@ class _$UserProfileImpl implements _UserProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserProfileImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.isPublic, isPublic) ||
                 other.isPublic == isPublic) &&
             (identical(other.name, name) || other.name == name) &&
@@ -285,6 +303,7 @@ class _$UserProfileImpl implements _UserProfile {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       isPublic,
       name,
       const DeepCollectionEquality().hash(_career),
@@ -310,7 +329,8 @@ class _$UserProfileImpl implements _UserProfile {
 
 abstract class _UserProfile implements UserProfile {
   const factory _UserProfile(
-      {final bool isPublic,
+      {final String id,
+      final bool isPublic,
       final String name,
       final List<String> career,
       final List<String> urls,
@@ -322,6 +342,8 @@ abstract class _UserProfile implements UserProfile {
   factory _UserProfile.fromJson(Map<String, dynamic> json) =
       _$UserProfileImpl.fromJson;
 
+  @override
+  String get id;
   @override
   bool get isPublic;
   @override
