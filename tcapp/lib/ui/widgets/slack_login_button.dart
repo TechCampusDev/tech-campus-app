@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tcapp/env/env.dart';
 import 'package:tcapp/gen/assets.gen.dart';
+import 'package:tcapp/utils/constants.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class SlackLoginButton extends StatelessWidget {
@@ -59,10 +61,11 @@ class SlackLoginButton extends StatelessWidget {
   }
 
   Future<void> onTap(BuildContext context) async {
+    final currentPath = GoRouterState.of(context).uri.toString();
     final params = {
       'client_id': Env.slackClientId,
       'scope': ['openid', 'profile'].join(','),
-      'redirect_uri': 'https://app.techcampus.dev/oauth',
+      'redirect_uri': '$kAppUrl/oauth?from=$currentPath',
       'response_type': 'code',
     };
 

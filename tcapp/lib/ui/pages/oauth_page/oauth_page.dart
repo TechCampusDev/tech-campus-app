@@ -11,6 +11,7 @@ class OauthPage extends HookWidget {
   Widget build(BuildContext context) {
     final qParams = GoRouterState.of(context).uri.queryParametersAll;
     final code = qParams['code']?.first;
+    final from = qParams['from']?.first;
     useEffect(
       () {
         if (code == null) {
@@ -23,12 +24,17 @@ class OauthPage extends HookWidget {
               .httpsCallable(
             'onCallSlackOauth',
           )
-              .call<Map<String, String>>({'code': code});
+              .call<Map<String, String>>({
+            'code': code,
+            'from': from,
+          });
           final customToken = result.data['customToken']!;
 
           await FirebaseAuth.instance.signInWithCustomToken(customToken);
 
           // もとの画面に戻る
+          if (!context.mounted) return;
+          context.go(from!);
         }
 
         f();
@@ -36,6 +42,6 @@ class OauthPage extends HookWidget {
       },
       [code],
     );
-    return const Placeholder();
+    return const Center(child: Text('認証中...'));
   }
 }
