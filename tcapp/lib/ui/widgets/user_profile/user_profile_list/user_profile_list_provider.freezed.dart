@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserProfileListState {
   List<UserProfile> get userProfiles => throw _privateConstructorUsedError;
+  int get moreCountCanShow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserProfileListStateCopyWith<UserProfileListState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $UserProfileListStateCopyWith<$Res> {
           $Res Function(UserProfileListState) then) =
       _$UserProfileListStateCopyWithImpl<$Res, UserProfileListState>;
   @useResult
-  $Res call({List<UserProfile> userProfiles});
+  $Res call({List<UserProfile> userProfiles, int moreCountCanShow});
 }
 
 /// @nodoc
@@ -47,12 +48,17 @@ class _$UserProfileListStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? userProfiles = null,
+    Object? moreCountCanShow = null,
   }) {
     return _then(_value.copyWith(
       userProfiles: null == userProfiles
           ? _value.userProfiles
           : userProfiles // ignore: cast_nullable_to_non_nullable
               as List<UserProfile>,
+      moreCountCanShow: null == moreCountCanShow
+          ? _value.moreCountCanShow
+          : moreCountCanShow // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -65,7 +71,7 @@ abstract class _$$UserProfileListStateImplCopyWith<$Res>
       __$$UserProfileListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<UserProfile> userProfiles});
+  $Res call({List<UserProfile> userProfiles, int moreCountCanShow});
 }
 
 /// @nodoc
@@ -80,12 +86,17 @@ class __$$UserProfileListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userProfiles = null,
+    Object? moreCountCanShow = null,
   }) {
     return _then(_$UserProfileListStateImpl(
       userProfiles: null == userProfiles
           ? _value._userProfiles
           : userProfiles // ignore: cast_nullable_to_non_nullable
               as List<UserProfile>,
+      moreCountCanShow: null == moreCountCanShow
+          ? _value.moreCountCanShow
+          : moreCountCanShow // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -93,7 +104,9 @@ class __$$UserProfileListStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserProfileListStateImpl implements _UserProfileListState {
-  _$UserProfileListStateImpl({final List<UserProfile> userProfiles = const []})
+  _$UserProfileListStateImpl(
+      {final List<UserProfile> userProfiles = const [],
+      this.moreCountCanShow = 0})
       : _userProfiles = userProfiles;
 
   final List<UserProfile> _userProfiles;
@@ -106,8 +119,12 @@ class _$UserProfileListStateImpl implements _UserProfileListState {
   }
 
   @override
+  @JsonKey()
+  final int moreCountCanShow;
+
+  @override
   String toString() {
-    return 'UserProfileListState(userProfiles: $userProfiles)';
+    return 'UserProfileListState(userProfiles: $userProfiles, moreCountCanShow: $moreCountCanShow)';
   }
 
   @override
@@ -116,12 +133,14 @@ class _$UserProfileListStateImpl implements _UserProfileListState {
         (other.runtimeType == runtimeType &&
             other is _$UserProfileListStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._userProfiles, _userProfiles));
+                .equals(other._userProfiles, _userProfiles) &&
+            (identical(other.moreCountCanShow, moreCountCanShow) ||
+                other.moreCountCanShow == moreCountCanShow));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_userProfiles));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_userProfiles), moreCountCanShow);
 
   @JsonKey(ignore: true)
   @override
@@ -133,11 +152,14 @@ class _$UserProfileListStateImpl implements _UserProfileListState {
 }
 
 abstract class _UserProfileListState implements UserProfileListState {
-  factory _UserProfileListState({final List<UserProfile> userProfiles}) =
-      _$UserProfileListStateImpl;
+  factory _UserProfileListState(
+      {final List<UserProfile> userProfiles,
+      final int moreCountCanShow}) = _$UserProfileListStateImpl;
 
   @override
   List<UserProfile> get userProfiles;
+  @override
+  int get moreCountCanShow;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileListStateImplCopyWith<_$UserProfileListStateImpl>
