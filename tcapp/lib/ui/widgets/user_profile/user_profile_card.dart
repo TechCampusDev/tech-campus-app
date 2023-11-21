@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tcapp/models/user_profile.dart';
+import 'package:tcapp/models/user_profile/user_profile.dart';
 import 'package:tcapp/ui/widgets/universal_image.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 

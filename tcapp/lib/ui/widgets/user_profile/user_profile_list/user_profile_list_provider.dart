@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:tcapp/models/event.dart';
-import 'package:tcapp/models/user_profile.dart';
+import 'package:tcapp/models/user_profile/user_profile.dart';
+import 'package:tcapp/services/fire_event_service.dart';
+import 'package:tcapp/services/fire_user_profile_service.dart';
 
 part 'user_profile_list_provider.freezed.dart';
 
@@ -35,41 +35,27 @@ class UserProfileListController extends StateNotifier<UserProfileListState> {
   }
 
   Future<void> _fetchAllMembers(bool isSignedIn) async {
-    final snapshots = await FirebaseFirestore.instance
-        .collection('userProfiles')
-        .doc('v1')
-        .collection(isSignedIn ? 'protected' : 'public')
-        .get();
     final userProfiles =
-        snapshots.docs.map((e) => UserProfile.fromJson(e.data())).toList();
+        await FireUserProfileService().fetchAllMembers(isSignedIn: isSignedIn);
     state = state.copyWith(userProfiles: userProfiles);
   }
 
   Future<void> _fetchMembersByEventId(bool isSignedIn, String eventId) async {
-    final eventSnapshot = await FirebaseFirestore.instance
-        .collection('events')
-        .doc('v1')
-        .collection('public')
-        .doc(eventId)
-        .get();
-    final event = Event.fromJson(eventSnapshot.data()!);
+    final event = await FireEventService().fetchEvent(eventId: eventId);
     final speakerUserIds = event.speakerUserIds;
 
     final userProfiles = <UserProfile>[];
     var moreCountCanShow = 0;
     for (final speakerUserId in speakerUserIds) {
-      final userProfileSnapshot = await FirebaseFirestore.instance
-          .collection('userProfiles')
-          .doc('v1')
-          .collection(isSignedIn ? 'protected' : 'public')
-          .doc(speakerUserId)
-          .get();
-      if (userProfileSnapshot.data() == null) {
+      try {
+        final userProfile = await FireUserProfileService().fetchUserProfile(
+          isSignedIn: isSignedIn,
+          userId: speakerUserId,
+        );
+        userProfiles.add(userProfile);
+      } catch (_) {
         moreCountCanShow++;
-        continue;
       }
-      final userProfile = UserProfile.fromJson(userProfileSnapshot.data()!);
-      userProfiles.add(userProfile);
     }
     state = state.copyWith(
       userProfiles: userProfiles,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tcapp/providers/auth_provider.dart';
-import 'package:tcapp/ui/widgets/slack_login_button.dart';
+import 'package:tcapp/ui/widgets/buttons/slack_login_button.dart';
 import 'package:tcapp/ui/widgets/user_profile/user_profile_card.dart';
 import 'package:tcapp/ui/widgets/user_profile/user_profile_list/user_profile_list_provider.dart';
 

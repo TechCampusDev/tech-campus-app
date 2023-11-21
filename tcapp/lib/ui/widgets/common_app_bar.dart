@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tcapp/providers/auth_provider.dart';
-import 'package:tcapp/ui/widgets/slack_login_button.dart';
+import 'package:tcapp/ui/widgets/buttons/slack_login_button.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CommonAppBar({

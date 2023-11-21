@@ -4,6 +4,6 @@ class Routes {
   static const String index = '/';
   static const String oauth = '/oauth';
 
-  static String event({String? id}) =>
-      id == null ? '/events/:id' : '/events/$id';
+  static String event({String? eventId}) =>
+      eventId == null ? '/events/:eventId' : '/events/$eventId';
 }

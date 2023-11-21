@@ -22,8 +22,8 @@ final routerPublicProvider = Provider(
       GoRoute(
         path: Routes.event(),
         builder: (BuildContext context, GoRouterState state) {
-          final id = state.pathParameters['id']!;
-          return EventPage(id: id);
+          final eventId = state.pathParameters['eventId']!;
+          return EventPage(eventId: eventId);
         },
       ),
     ];
