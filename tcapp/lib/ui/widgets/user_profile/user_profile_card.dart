@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tcapp/models/user_profile.dart';
+import 'package:tcapp/ui/widgets/universal_image.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class UserProfileCard extends StatelessWidget {
@@ -24,7 +25,7 @@ class UserProfileCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
+                  child: UniversalImage(
                     userProfile.imageUrl,
                     width: 60,
                     height: 60,

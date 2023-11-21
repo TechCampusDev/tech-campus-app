@@ -47,6 +47,8 @@ class UserProfileList extends HookConsumerWidget {
         final moreCountCanShow = ref.watch(
           userProfileListProvider.select((value) => value.moreCountCanShow),
         );
+        final isSignedIn =
+            ref.watch(authProvider.select((value) => value.isSignedIn));
         var text = '';
         if (eventId == null) {
           text = 'SlackでサインインするとTechCampus内限定公開のメンバーのプロフィールを表示できます';
@@ -54,7 +56,7 @@ class UserProfileList extends HookConsumerWidget {
           text = 'Slackでサインインすると他$moreCountCanShow人を表示できます';
         }
 
-        if (text.isEmpty) return const SizedBox.shrink();
+        if (text.isEmpty || isSignedIn) return const SizedBox.shrink();
 
         return Card(
           child: Container(

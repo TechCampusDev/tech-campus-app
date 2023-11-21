@@ -1,0 +1,7 @@
+[
+    {
+      "origin": ["https://app.techcampus.dev", "http://localhost:*"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3000
+    }
+]
