@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tcapp/providers/auth_provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class GoogleFormButton extends ConsumerWidget {
+class GoogleFormButton extends StatelessWidget {
   const GoogleFormButton({
     required this.title,
     required this.url,
@@ -16,10 +14,7 @@ class GoogleFormButton extends ConsumerWidget {
   final String url;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isSignedIn =
-        ref.watch(authProvider.select((value) => value.isSignedIn));
-    if (isSignedIn) return const SizedBox.shrink();
+  Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
