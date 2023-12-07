@@ -4,6 +4,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:tcapp/utils/constants.dart';
 
 part 'auth_provider.freezed.dart';
 
@@ -38,11 +39,11 @@ class AuthController extends StateNotifier<AuthState> {
     final functions = FirebaseFunctions.instanceFor(region: 'asia-northeast1');
     final result = await functions
         .httpsCallable('onCallSlackOauth')
-        .call<Map<String, String>>({
+        .call<Map<String, dynamic>>({
       'code': code,
-      'from': from,
+      'redirectUri': '$kSlackRedirectUri?from=$from',
     });
-    final customToken = result.data['customToken']!;
+    final customToken = result.data['customToken']! as String;
 
     final userCredential =
         await FirebaseAuth.instance.signInWithCustomToken(customToken);

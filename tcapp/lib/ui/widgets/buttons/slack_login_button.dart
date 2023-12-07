@@ -67,10 +67,11 @@ class SlackLoginButton extends ConsumerWidget {
 
   Future<void> onTap(BuildContext context) async {
     final currentPath = GoRouterState.of(context).uri.toString();
+    final redirectUri = '$kSlackRedirectUri?from=$currentPath';
     final params = {
       'client_id': Env.slackClientId,
       'scope': ['openid', 'profile'].join(','),
-      'redirect_uri': '$kAppUrl/oauth?from=$currentPath',
+      'redirect_uri': redirectUri,
       'response_type': 'code',
     };
 

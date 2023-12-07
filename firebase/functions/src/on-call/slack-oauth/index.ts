@@ -8,10 +8,10 @@ export const onCallSlackOauth = functions
   .region('asia-northeast1')
   .https.onCall(async (data) => {
     const request = data as OnCallSlackOauthRequest
-    const { code, from } = request
+    const { redirectUri, code } = request
 
     console.log(code)
-    console.log(from)
+    console.log(redirectUri)
 
     const response = await axios.post(
       'https://slack.com/api/openid.connect.token',
@@ -19,7 +19,7 @@ export const onCallSlackOauth = functions
         code: code,
         client_id: functions.config().slack.client_id,
         client_secret: functions.config().slack.client_secret,
-        redirect_uri: functions.config().slack.redirect_uri + '?from=' + from,
+        redirect_uri: redirectUri,
       },
       {
         headers: {
