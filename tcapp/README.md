@@ -8,7 +8,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 # アプリの起動
 
 ```
-flutter run -d Chrome --web-renderer canvaskit
+flutter run -d Chrome --web-renderer canvaskit --web-port 5555
 ```
 
 # アプリのデプロイ
