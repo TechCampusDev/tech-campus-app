@@ -2,7 +2,7 @@ import 'package:envied/envied.dart';
 
 part 'env.g.dart';
 
-@Envied(path: '.env')
+@Envied(path: '.env.dev')
 abstract class Env {
   @EnviedField(varName: 'FIREBASE_API_KEY', obfuscate: true)
   static String firebaseApiKey = _Env.firebaseApiKey;
@@ -18,7 +18,7 @@ abstract class Env {
   static String firebaseStorageBucket = _Env.firebaseStorageBucket;
   @EnviedField(varName: 'FIREBASE_MEASUREMENT_ID', obfuscate: true)
   static String firebaseMeasurementId = _Env.firebaseMeasurementId;
-  
+
   @EnviedField(varName: 'SLACK_CLIENT_ID', obfuscate: true)
   static String slackClientId = _Env.slackClientId;
   @EnviedField(varName: 'SLACK_CLIENT_SECRET', obfuscate: true)
