@@ -2,7 +2,7 @@ import axios from 'axios'
 import { SendDmConfirmedUser } from './types'
 
 export const getConfirmedUsers = async () => {
-  const slackToken = process.env.SLACK_APP_USER_TOKEN
+  const slackToken = process.env.SLACK_USER_TOKEN
 
   const userResponse = await axios.get('https://slack.com/api/users.list', {
     headers: {

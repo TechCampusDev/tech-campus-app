@@ -10,7 +10,7 @@ dotenv.config()
 // 特定のチャンネルのメッセージを全て取得してFirestoreに保存する
 const archiveToSlack = async () => {
   const channel = process.env.ARCHIVE_CHANNEL_ID as string
-  const slackToken = process.env.SLACK_TOKEN as string
+  const slackToken = process.env.SLACK_BOT_TOKEN as string
 
   const response = await axios.get(
     `https://slack.com/api/conversations.history?channel=${channel}`,
@@ -43,7 +43,7 @@ const archiveToSlack = async () => {
 const archiveMessageFiles = async () => {
   const channel = process.env.ARCHIVE_CHANNEL_ID as string
   const bucket = process.env.PROJECT_BUCKET as string
-  const slackToken = process.env.SLACK_TOKEN as string
+  const slackToken = process.env.SLACK_BOT_TOKEN as string
 
   const snapshots = await getFirestore()
     .collection('slackArchives')
@@ -76,8 +76,6 @@ const archiveMessageFiles = async () => {
           filetype === 'mp4' ||
           filetype === 'mov'
         ) {
-          console.log(process.env.SLACK_TOKEN)
-
           const response = await axios.get(url, {
             headers: {
               Authorization: `Bearer ${slackToken}`,

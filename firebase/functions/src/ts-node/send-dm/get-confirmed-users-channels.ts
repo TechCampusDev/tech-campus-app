@@ -4,7 +4,7 @@ import { SendDmChannel, SendDmConfirmedUser } from './types'
 export const getConfirmedUsersChannels = async (
   users: SendDmConfirmedUser[]
 ) => {
-  const slackToken = process.env.SLACK_APP_USER_TOKEN
+  const slackToken = process.env.SLACK_USER_TOKEN
 
   const dmResponse = await axios.get(
     'https://slack.com/api/conversations.list?types=im',
@@ -22,7 +22,6 @@ export const getConfirmedUsersChannels = async (
     const { id, user: channelUserId, created } = channel
     const user = users.find((user) => user.id === channelUserId)
     if (user) {
-      // console.log(id, userId)
       dmChannels.push({
         channel: id,
         userId: channelUserId,

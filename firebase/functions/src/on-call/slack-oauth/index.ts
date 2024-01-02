@@ -10,8 +10,7 @@ export const onCallSlackOauth = functions
     const request = data as OnCallSlackOauthRequest
     const { redirectUri, code } = request
 
-    console.log(code)
-    console.log(redirectUri)
+    console.log(code, redirectUri)
 
     const response = await axios.post(
       'https://slack.com/api/openid.connect.token',

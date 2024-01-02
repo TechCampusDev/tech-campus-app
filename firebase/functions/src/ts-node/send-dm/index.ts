@@ -5,7 +5,7 @@ import { getConfirmedUsersChannels } from './get-confirmed-users-channels'
 dotenv.config()
 
 const tsNodeSendDm = async () => {
-  const slackToken = process.env.SLACK_APP_USER_TOKEN
+  const slackToken = process.env.SLACK_USER_TOKEN
 
   const users = await getConfirmedUsers()
   const channles = await getConfirmedUsersChannels(users)
