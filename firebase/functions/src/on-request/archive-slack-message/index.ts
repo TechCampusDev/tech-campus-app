@@ -91,6 +91,8 @@ const archiveFiles = async (messageId: string, channel: string) => {
   }
 
   const slackToken = functions.config().slack.bot_token
+  const projectId = process.env.GCLOUD_PROJECT
+  const bucket = `${projectId}.appspot.com`
 
   for (const file of files) {
     const {
@@ -118,8 +120,6 @@ const archiveFiles = async (messageId: string, channel: string) => {
 
       const buffer = Buffer.from(response.data, 'binary')
 
-      const projectId = process.env.GCLOUD_PROJECT
-      const bucket = `${projectId}.appspot.com`
       const pathToFile = `slackChannels/${channel}/${fileId}.${filetype}`
 
       const ref = getStorage().bucket(bucket).file(pathToFile)

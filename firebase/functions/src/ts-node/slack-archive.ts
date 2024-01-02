@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as dotenv from 'dotenv'
 import { getFirestore } from 'firebase-admin/firestore'
+import { getInstallations } from 'firebase-admin/installations'
 import { initializeFirebaseAdmin } from '../firebase'
 import { getStorage, getDownloadURL } from 'firebase-admin/storage'
 dotenv.config()
@@ -42,8 +43,9 @@ const archiveToSlack = async () => {
 // Firestoreに保存された特定のチャンネルのメッセージを全て取得してそれらのファイルをStorageに保存し、そのURLをFirestoreに保存する
 const archiveMessageFiles = async () => {
   const channel = process.env.ARCHIVE_CHANNEL_ID as string
-  const bucket = process.env.PROJECT_BUCKET as string
   const slackToken = process.env.SLACK_BOT_TOKEN as string
+  const projectId = getInstallations().app.options.projectId
+  const bucket = `${projectId}.appspot.com`
 
   const snapshots = await getFirestore()
     .collection('slackArchives')

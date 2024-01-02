@@ -9,5 +9,6 @@ export const initializeFirebaseAdmin = (): void => {
   //     clientEmail: serviceAccount.client_email,
   //     privateKey: serviceAccount.private_key,
   //   }),
+  //   projectId: serviceAccount.project_id,
   // })
 }
