@@ -13,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { doPost } from './main';
-
-const RUN_CONSOLE = false;
-if (RUN_CONSOLE) {
-  doPost(null);
-}
+export const SPREAD_SHEET_ID =
+  PropertiesService.getScriptProperties().getProperty('SPREAD_SHEET_ID');
+export const TECH_CAMPUS_ON_REQUEST_KEY =
+  PropertiesService.getScriptProperties().getProperty(
+    'TECH_CAMPUS_ON_REQUEST_KEY'
+  );
+export const FUNCTIONS_URL =
+  PropertiesService.getScriptProperties().getProperty('FUNCTIONS_URL');

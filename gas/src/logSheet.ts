@@ -13,9 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { doPost } from './main';
+import { SPREAD_SHEET_ID } from './constants';
 
-const RUN_CONSOLE = false;
-if (RUN_CONSOLE) {
-  doPost(null);
-}
+export const logSheet = (type: string, message?: string) => {
+  const spreadsheetId = SPREAD_SHEET_ID;
+
+  const spreadsheet = SpreadsheetApp.openById(spreadsheetId!);
+  const sheet = spreadsheet.getActiveSheet();
+
+  const timestamp = new Date();
+
+  const data = [timestamp, type, message];
+
+  sheet.appendRow(data);
+};

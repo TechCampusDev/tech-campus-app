@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "techcampus-5c803"
-  }
+    "default": "techcampusdev-38317",
+    "dev": "techcampusdev-38317",
+    "prod": "techcampus-5c803"
+  },
+  "targets": {},
+  "etags": {}
 }
