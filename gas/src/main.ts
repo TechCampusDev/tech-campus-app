@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { handleMessageEvent } from './handleMessageEvent';
+import { handleMessageEvent } from './handle-message-event';
 
 export const doPost = (
   e: { postData: { getDataAsString: () => string } } | null

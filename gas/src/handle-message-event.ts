@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { FUNCTIONS_URL, TECH_CAMPUS_ON_REQUEST_KEY } from './constants';
-import { logSheet } from './logSheet';
+import { logSheet } from './log-sheet';
 
 // event.type === "message"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
