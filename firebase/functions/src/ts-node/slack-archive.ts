@@ -150,7 +150,7 @@ const archiveMessageFiles = async () => {
 }
 
 const RUN_ARCHIVE_TO_SLACK = false
-const RUN_ARCHIVE_MESSAGE_FILES = true
+const RUN_ARCHIVE_MESSAGE_FILES = false
 
 initializeFirebaseAdmin()
 
