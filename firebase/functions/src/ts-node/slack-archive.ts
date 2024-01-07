@@ -149,8 +149,59 @@ const archiveMessageFiles = async () => {
   }
 }
 
+const archiveThreadMessages = async () => {
+  const channel = process.env.ARCHIVE_CHANNEL_ID as string
+  const slackToken = process.env.SLACK_BOT_TOKEN as string
+
+  const snapshots = await getFirestore()
+    .collection('slackArchives')
+    .doc('v1')
+    .collection(channel)
+    .get()
+
+  for (const snapshot of snapshots.docs) {
+    const data = snapshot.data()
+    const { thread_ts: threadTs } = data
+    // 特定のtsのみアーカイブする場合
+    // if (threadTs !== 'xxxxxxx') continue
+
+    // xxxxxxx以降のtsのみアーカイブする場合コメントアウトを次の行と入れ替える
+    // if (threadTs && threadTs > 'xxxxxxx') {
+    if (threadTs) {
+      const response = await axios.get(
+        `https://slack.com/api/conversations.replies?channel=${channel}&ts=${threadTs}`,
+        {
+          headers: {
+            Authorization: `Bearer ${slackToken}`,
+          },
+        }
+      )
+
+      // console.log(response.data)
+
+      const { messages } = response.data
+
+      for (const message of messages) {
+        console.log(message)
+        const messageId = message.client_msg_id
+        if (messageId && snapshot.id !== messageId) {
+          await getFirestore()
+            .collection('slackArchives')
+            .doc('v1')
+            .collection(channel)
+            .doc(snapshot.id)
+            .collection('threads')
+            .doc(messageId)
+            .set(message)
+        }
+      }
+    }
+  }
+}
+
 const RUN_ARCHIVE_TO_SLACK = false
 const RUN_ARCHIVE_MESSAGE_FILES = false
+const RUN_ARCHIVE_THREAD_MESSAGES = false
 
 initializeFirebaseAdmin()
 
@@ -159,4 +210,7 @@ if (RUN_ARCHIVE_TO_SLACK) {
 }
 if (RUN_ARCHIVE_MESSAGE_FILES) {
   archiveMessageFiles()
+}
+if (RUN_ARCHIVE_THREAD_MESSAGES) {
+  archiveThreadMessages()
 }
