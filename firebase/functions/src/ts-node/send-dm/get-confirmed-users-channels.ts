@@ -2,10 +2,9 @@ import axios from 'axios'
 import { SendDmChannel, SendDmConfirmedUser } from './types'
 
 export const getConfirmedUsersChannels = async (
-  users: SendDmConfirmedUser[]
+  users: SendDmConfirmedUser[],
+  slackToken: string
 ) => {
-  const slackToken = process.env.SLACK_USER_TOKEN
-
   const dmResponse = await axios.get(
     'https://slack.com/api/conversations.list?types=im',
     {

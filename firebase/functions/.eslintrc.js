@@ -28,6 +28,7 @@ module.exports = {
     'object-curly-spacing': 'off', // Allow curly braces in objects.
     'max-len': ['error', 100], // Maximum line length.
     semi: ['error', 'never'], // Require semicolons.
-    'quote-props': ['error', 'as-needed'], // Only quote object properties when necessary.
+    'quote-props': ['error', 'as-needed'], // Only quote object properties when necessary.,
+    'operator-linebreak': 'off', // Allow operators at the beginning of a line.
   },
 }
